@@ -1,4 +1,6 @@
-[简体中文](README_ZH.md) | English
+<details open>
+<summary><b>🌐 Click to collapse / expand English Version (点击收起/展开英文版)</b></summary>
+<br>
 
 # MediaPipe TouchDesigner - Multi-Hand Recognition Extension
 
@@ -60,5 +62,76 @@ If you find a bug, or are willing to help fix other unverified output channels, 
 
 Thank you very much!
 
+</details>
 
+<br>
+<hr>
+<br>
 
+<details>
+<summary><b>🌐 点击展开 / 收起 简体中文版本 (Click to expand / collapse Chinese Version)</b></summary>
+<br>
+
+# MediaPipe TouchDesigner - 多手识别扩展版
+
+本项目基于[在 TouchDesigner 社区中的 MediaPipe ](https://github.com/torinmb/mediapipe-touchdesigner)进行修改。感谢原作者们的插件开发！
+
+要使用这个修改后的版本，您可以直接下载Release中的压缩包并解压，文件夹中含有'.tox'格式的插件文件，以及一个工程示意文件。
+
+我提供的插件 **最多可以识别并输出4只手的动态数据** ，后文提供了我修改的具体步骤和我只做了上限为4只手识别的原因，但如果需要，你可以继续通过后文中提供的方法，提高手的识别数量。
+
+其他使用方法与原项目一致。
+
+工程示意文件同样为插件原作者提供，我只对插件的手势识别部分进行了一定修改！
+
+---
+
+## 1.开发目的
+
+在使用原版插件时，我发现它最多只能传输 2 只手的数据，即使打开识别更多手的选项，也无法正确输出结果。
+
+【图片】
+
+因此我对手识别的部分进行了简要的修改
+
+---
+
+## 2.效果演示
+
+【视频】
+
+---
+
+## 3.修改步骤
+
+在本段，我将叙述我的修改方式，如果你需要4只手以上的数据，可以参考步骤：
+
+1.在MediaPipe的选项设置，更改“最大识别手的数量”至你想要的数量
+
+【图片】
+
+2.点入MediaPipe的模块后，选择图中框出的部分，复制粘贴
+
+【图片】
+
+3.点入选中的模块，确认以下内容是否与数字对应
+
+【图片】
+
+---
+
+## 4.使用建议
+
+ ⚠️尽管插件在技术上能够实现更多手的识别，但是在实际的交互项目中，由于摄像头的捕捉范围有限，手在指定范围内容易发发生交错遮挡，导致目标丢失，且MediaPipe限制了摄像头输入的像素值，而当手占的像素过低时MediaPipe不会选择识别，因此，画面里很难捕捉到5个及以上数量的手。
+  
+ 如果你的项目需要对更多的手的识别，我认为**增加摄像头设备数量**也许是更具可行性的方案。
+
+---
+
+## 致谢...致谢吗（？）
+
+我目前仅修改了手部识别的部分，也只检验了normalized_data和手势部分的输出是否正确，但是我认为其他模块的修改方式应该非常相似？如果未来有相关需求，也许我会再改一下。
+  
+如果你发现了 Bug，或者愿意帮助修复其他未验证的输出通道，请直接提issue！非常感谢！
+
+</details>
