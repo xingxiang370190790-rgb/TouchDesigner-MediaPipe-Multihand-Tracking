@@ -1,3 +1,5 @@
+[简体中文](README_ZH.md) | English
+
 # MediaPipe TouchDesigner - Multi-Hand Recognition Extension
 
 This project is modified based on [MediaPipe in the TouchDesigner community](https://github.com/torinmb/mediapipe-touchdesigner). Thanks to the original authors for their plugin development!
