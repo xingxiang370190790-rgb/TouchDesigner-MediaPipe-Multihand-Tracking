@@ -1,72 +1,55 @@
-# MediaPipe TouchDesigner - Multi-Hand Extension
+# MediaPipe TouchDesigner - Multi-Hand Recognition Extension
 
-This project is a modified version of the popular MediaPipe plugin for TouchDesigner. A huge thank you to **Torin Blankensmith** and **Dom Scott** for their incredible work on the original creator ecosystem!
-
----
-
-## 📌 Why This Fork?
-
-While using the original plugin, I noticed that it was limited to tracking and transmitting data for a maximum of 2 hands. After seeing other community members reporting the same issue, I decided to modify the **hand_tracking** module. 
-
-This version successfully unlocks the limitation, allowing you to **detect, process, and output motion data for 3 or more hands simultaneously**.
+This project is modified based on [MediaPipe in the TouchDesigner community](https://github.com/torinmb/mediapipe-touchdesigner). Thanks to the original authors for their plugin development!
+To use this modified version, you can directly download the compressed package from the Release and extract it. The folder contains the plugin file in .toe format, as well as a project demonstration file.
+The plugin I provide can recognize and output the dynamic data of up to 4 hands. The later text provides my specific modification steps and the reasons why I only made the upper limit 4 hands, but if needed, you can continue to increase the number of recognized hands through the methods provided later.
+Other usage methods are consistent with the original project.
+The project demonstration file is also provided by the original plugin authors. I have only made certain modifications to the hand gesture recognition part of the plugin!
 
 ---
 
-## ⚠️ Current Status & Known Issues
+## 1. Development Purpose
 
-* **Work in Progress:** This project is still being refined.
-* **Channel Limitation:** I have heavily tested and verified the **`normalized_data`** output channel, as it was the only channel required for my specific interactive project. Other output channels (such as world coordinates or custom overlays) **have not been fully checked and may contain bugs or unexpected behavior**. 
-
-If you encounter issues with other channels, contributions and Pull Requests are more than welcome!
-
----
-
-## 💡 Practical Recommendation for Interactive Installations
-
-Although this plugin technically enables multi-hand detection (>2 hands) via a single camera, **I still highly recommend using multiple devices/cameras (with each camera dedicated to tracking only 1-2 hands) for real-world interactive art installations.** **Why?**
-1. **Limited FOV:** Standard camera capture areas are usually too small to fit multiple people comfortably.
-2. **Occlusion & Misidentification:** When 3 or more hands move in the same frame, hands frequently cross or block each other, which drastically increases the rate of tracking loss and misidentification.
+When using the original plugin, I found that it could only transmit data for a maximum of 2 hands. Even if the option to recognize more hands was turned on, it could not output the results correctly.
+【Picture】
+Therefore, I made a brief modification to the hand recognition part.
 
 ---
 
-## ❤️ Contributing & Feedback
-
-I hope this modification helps you with your multi-user interactive projects! If you find bugs or want to help fix the other output channels, feel free to open an Issue or submit a Pull Request.
-
-Happy programming!
-
-
-# MediaPipe TouchDesigner - 多手识别扩展版
-
-本项目基于在 TouchDesigner 社区中的 MediaPipe 插件进行修改。在此衷心感谢原作者 **Torin Blankensmith** 和 **Dom Scott** 带来的杰出开源贡献！
+## 2. Effect Demonstration
+【Video】
 
 ---
 
-## 📌 为什么开发这个修改版？
+## 3. Modification Steps
 
-在实际使用原版插件时，我发现它最多只能传输 2 只手的数据。同时，我也在社区中看到其他开发者反馈了相同的问题。因此，我对插件底层的 **hand_tracking** 模块进行针对性的修改。
+In this section, I will describe my modification method. If you need data for more than 4 hands, you can refer to the steps:
 
-现在它能够**同时检测、处理并输出 3 只手及以上的运动活动数据**。
+1. In the MediaPipe options settings, change the "Maximum number of recognized hands" to the number you want.
+【Picture】
 
----
+2. After entering the MediaPipe module, select the part boxed in the picture, then copy and paste it.
+【Picture】
 
-## ⚠️ 当前状态与已知问题
-
-* **完善进行中：** 本项目目前仍处于不断完善的阶段。
-* **通道限制：** 目前我仅对 **`normalized_data`（归一化数据）** 输出通道进行了深度测试和验证，因为我自己的交互项目只需要这一个通道。其他输出通道（如世界坐标 world coordinates 或自定义图层叠加 custom overlays）**尚未经过完整测试，可能存在 Bug 或输出异常**。
-
-如果你在测试其他通道时遇到问题，非常欢迎提交 Issue 或直接提交 Pull Request（PR）来一起完善它！
+3. Enter the selected module and confirm whether the following content corresponds to the number.
+【Picture】
 
 ---
 
-## 💡 交互艺术装置落地建议
+## 4. Usage Recommendations
 
-虽然该插件在技术上实现了通过单摄像头检测多只手（>2只手）的功能，但**在实际的多人交互艺术装置项目中，我依然建议使用“多台设备/多摄像头组合”的方案（即每台摄像头只专门负责检索 1-2 只手）。** **原因如下：**
-1. **视场角（FOV）限制：** 普通摄像头的捕捉范围有限，很难在舒适的距离内同时容纳多个人伸高手臂。
-2. **遮挡与误识别：** 当 3 只或更多只手在同一个画面中运动时，手势之间极易发生前后交错和遮挡，这会导致视觉算法频繁丢失追踪或发生身份误判（ID 跳变）。
+Although the plugin can technically achieve the recognition of more hands, in actual interactive projects, because the capture range of the camera is limited, hands are prone to cross-occlusion within the designated range, leading to target loss. Moreover, MediaPipe limits the input pixel value of the camera, and when the pixels occupied by the hand are too low, MediaPipe will choose not to recognize it. Therefore, it is very difficult to capture 5 or more hands in the frame. If your project requires the recognition of more hands, I think increasing the number of camera devices might be a more feasible solution.
 
 ---
 
-## ❤️ 贡献与反馈
+## Acknowledgments... Acknowledgments I guess (?)
 
-希望这次修改能对你的多人交互项目有所帮助！如果你发现了 Bug，或者愿意帮助修复其他未验证的输出通道，请随时提出 Issue 或提交 Pull Request。
+I have currently only modified the hand recognition part, and I have only verified whether the output of normalized_data and the gesture part is correct. However, I think the modification methods for other modules should be very similar? If there are related needs in the future, maybe I will modify them again.
+If you find a bug, or are willing to help fix other unverified output channels, please raise an issue directly! Thank you very much!
+
+
+
+## 致谢...致谢吗（？）
+
+  我目前仅修改了手部识别的部分，也只检验了normalized_data和手势部分的输出是否正确，但是我认为其他模块的修改方式应该非常相似？如果未来有相关需求，也许我会再改一下。
+如果你发现了 Bug，或者愿意帮助修复其他未验证的输出通道，请直接提issue！非常感谢！
